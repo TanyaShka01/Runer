@@ -33,7 +33,7 @@ public class Hero : MonoBehaviour
         Move();
     }
 
-    public void StopRun()
+    public void StopRun() 
     {
         
         enabled = false;
@@ -41,7 +41,7 @@ public class Hero : MonoBehaviour
 
     private void GenerateAndDeleteObstacles()
     {
-        if (transform.position.z - LastPositionZ > 50)
+        if (transform.position.z - LastPositionZ > 100)
         {
             Generation.GenerateObstacles(transform.position.z + 20);
             Generation.DeleteUnusedObstacles(transform.position.z);

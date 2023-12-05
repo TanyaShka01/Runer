@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class HeroCollision : MonoBehaviour
 {
+    public GamePlayUI UI;
     void Start()
     {
         
@@ -19,7 +20,7 @@ public class HeroCollision : MonoBehaviour
         if(collision.gameObject.tag == "Obstacle")
         {
             gameObject.GetComponent<Hero>().StopRun();
-            // GitHub
+            UI.ShowLosePanel();
         }
     }
 }
