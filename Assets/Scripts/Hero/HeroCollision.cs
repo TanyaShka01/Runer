@@ -6,6 +6,7 @@ using UnityEngine;
 public class HeroCollision : MonoBehaviour
 {
     public GamePlayUI UI;
+    public HeroScore Score;
     void Start()
     {
         
@@ -20,7 +21,7 @@ public class HeroCollision : MonoBehaviour
         if(collision.gameObject.tag == "Obstacle")
         {
             gameObject.GetComponent<Hero>().StopRun();
-            UI.ShowLosePanel();
+            UI.ShowLosePanel(Score.GetScore());
         }
     }
 }

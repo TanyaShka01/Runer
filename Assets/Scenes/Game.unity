@@ -572,6 +572,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 431360324}
   m_CullTransparentMesh: 1
+--- !u!1 &499668773 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3604694794995971980, guid: e47081472c8fba048bdd31e0e220277e, type: 3}
+  m_PrefabInstance: {fileID: 3604694795385515448}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &499668780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 499668773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1c1157602c404b4cab0b9386b564401, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &612180905
 GameObject:
   m_ObjectHideFlags: 0
@@ -1922,6 +1939,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LosePanel: {fileID: 431360324}
+  Result: {fileID: 1817513042}
 --- !u!1001 &3604694795385515448
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1985,5 +2003,9 @@ PrefabInstance:
       propertyPath: UI
       value: 
       objectReference: {fileID: 1892414178}
+    - target: {fileID: 7014970794522838606, guid: e47081472c8fba048bdd31e0e220277e, type: 3}
+      propertyPath: Score
+      value: 
+      objectReference: {fileID: 499668780}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e47081472c8fba048bdd31e0e220277e, type: 3}
