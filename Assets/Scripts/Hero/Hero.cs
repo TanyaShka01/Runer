@@ -9,7 +9,8 @@ public class Hero : MonoBehaviour
     public CapsuleCollider MainCollider;
     public Rigidbody Body;
     public MapGeneration Generation;
-    float LastPositionZ = 0;
+    float LastObstaclesPositionZ = 0;
+    float LastCoinPositionZ = 0;
     public Animator Anim;
     public float SpeedForvard = 50;
     public float SpeedTurn = 50;
@@ -22,11 +23,13 @@ public class Hero : MonoBehaviour
     {
         MoveDirection.z = SpeedForvard;
         Anim.SetBool("Run", true);
+        Application.targetFrameRate = 30;
     }
 
     void Update()
     {
         GenerateAndDeleteObstacles();
+        GenerateAndDeleteCoins();
         SwitchRightAndLeft();
         CheckJump();
         CheckRoll();
@@ -41,17 +44,26 @@ public class Hero : MonoBehaviour
 
     private void GenerateAndDeleteObstacles()
     {
-        if (transform.position.z - LastPositionZ > 100)
+        if (transform.position.z - LastObstaclesPositionZ > 100)
         {
             Generation.GenerateObstacles(transform.position.z + 20);
             Generation.DeleteUnusedObstacles(transform.position.z);
-            LastPositionZ = transform.position.z;
+            LastObstaclesPositionZ = transform.position.z;
+        }
+    }
+
+    private void GenerateAndDeleteCoins()
+    {
+        if(transform.position.z - LastCoinPositionZ > 30)
+        {
+            Generation.GenerateCoin(transform.position.z + 20);
+            LastCoinPositionZ = transform.position.z;
         }
     }
 
     void Move()
     {
-        Body.MovePosition(transform.position + MoveDirection * Time.deltaTime);
+        Body.MovePosition(transform.position + MoveDirection * 0.01f);
     }
 
     private void SwitchRightAndLeft()
@@ -79,6 +91,7 @@ public class Hero : MonoBehaviour
 
     async void SmoothlyMoveX(float FinishX)
     {
+        Body.constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationX;
         float StartX = transform.position.x;
         IsTerning = true;
         float Derection = FinishX - transform.position.x;
@@ -90,6 +103,8 @@ public class Hero : MonoBehaviour
         }
         IsTerning = false;
         MoveDirection.x = 0;
+        // Принудительно поставить в линию
+        Body.constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezePositionX;
     }
     async void CheckJump()
     {

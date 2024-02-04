@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class GamePlayUI : MonoBehaviour
 {
     public GameObject LosePanel;
+    public GameObject PausePanel;
     public TMP_Text Result;
 
     public void ShowLosePanel(int Score)
@@ -24,6 +25,23 @@ public class GamePlayUI : MonoBehaviour
     }
     public void Restart()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void MakePause()
+    {
+        Time.timeScale = 0;
+        PausePanel.SetActive(true);
+    }
+    public void Continue()
+    {
+        Time.timeScale = 1;
+        PausePanel.SetActive(false);
+    }
+    public void OpenMenu()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("Menu");
     }
 }

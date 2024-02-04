@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf2cc1eb62f43b242bbb6fcfedb587b2, type: 3}
+  m_Name: HerosSettings
+  m_EditorClassIdentifier: 
+  AllHeros:
+  - Name: Hero1
+    MenuPrefab: {fileID: 3604694794995971980, guid: 1c8e3bbf5db2a934caf2788ccc99d0b7, type: 3}
+    GamePlayPrefab: {fileID: 3604694794995971980, guid: e47081472c8fba048bdd31e0e220277e, type: 3}
+    Cost: 0
+  - Name: Hero2
+    MenuPrefab: {fileID: 3604694794995971980, guid: 3e644ba80a90bfe48bd0288375791a46, type: 3}
+    GamePlayPrefab: {fileID: 3604694794995971980, guid: f6de56283794f7348b82a12879384502, type: 3}
+    Cost: 50
+  - Name: Cat
+    MenuPrefab: {fileID: 2539608305998446057, guid: 72d7a8f9cbb7a8f4baccb4564acd2e35, type: 3}
+    GamePlayPrefab: {fileID: 47807448905460649, guid: 873683187f6862943a5445ec53b3dbbe, type: 3}
+    Cost: 150

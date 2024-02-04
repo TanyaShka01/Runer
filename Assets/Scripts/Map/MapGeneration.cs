@@ -2,11 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class MapGeneration : MonoBehaviour
 {
     public GameObject[] Obstacles;
     public GameObject[] GroundPrefabs;
+    public GameObject CoinPrefab;
+    public AllHerosSettings allherosSettings;
+    public GamePlayUI gamePlayUI;
+
     List<GameObject> DeleteObstacles;  
     List<GameObject> Grounds;                                                                  
     void Start()
@@ -14,6 +19,16 @@ public class MapGeneration : MonoBehaviour
         DeleteObstacles = new List<GameObject>();
         Grounds = new List<GameObject>();
         GenerateObstacles(20);
+        string HeroName = PlayerProgres.GetSelectedHero();
+        for (int i = 0; i < allherosSettings.AllHeros.Length; i++)
+        {
+            if (HeroName == allherosSettings.AllHeros[i].Name)
+            {
+                GameObject newHero = Instantiate(allherosSettings.AllHeros[i].GamePlayPrefab);
+                newHero.GetComponent<HeroCollision>().UI = gamePlayUI;
+                newHero.GetComponent<Hero>().Generation = this;
+            }
+        }
     }
 
     void Update()
@@ -75,6 +90,18 @@ public class MapGeneration : MonoBehaviour
         {
             GameObject.Destroy(Grounds[0]);
             Grounds.RemoveAt(0);
+        }
+    }
+
+    public void GenerateCoin(float PlayerZ)
+    {
+        Vector3 StartRayPosition = new Vector3(0, 100, PlayerZ);
+        Ray ray = new Ray(StartRayPosition, Vector3.down);
+        if (Physics.Raycast(ray, out RaycastHit Hit, 500))
+        {
+            Vector3 CoinPosition = new Vector3(0, Hit.point.y + 0.5f, PlayerZ);
+            GameObject Coin = Instantiate(CoinPrefab);
+            Coin.transform.position = CoinPosition;
         }
     }
 }
