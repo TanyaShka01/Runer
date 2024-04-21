@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GamePlayUI : MonoBehaviour
 {
     public GameObject LosePanel;
     public GameObject PausePanel;
+    public GameObject Timer;
+    public Image Filling;
     public TMP_Text Result;
 
     public void ShowLosePanel(int Score)
@@ -43,5 +46,14 @@ public class GamePlayUI : MonoBehaviour
     {
         Time.timeScale = 1;
         SceneManager.LoadScene("Menu");
+    }
+    public void ChangeAbilityTime(float filling)
+    {
+        Filling.fillAmount = filling;
+    }
+
+    public void ActivetAbilityTimer(bool IsAcrive)
+    {
+        Timer.SetActive(IsAcrive);
     }
 }

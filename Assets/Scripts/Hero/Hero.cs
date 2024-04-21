@@ -2,17 +2,24 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Hero : MonoBehaviour
 {
     public CapsuleCollider MainCollider;
     public Rigidbody Body;
-    public MapGeneration Generation;
+    public HeroScore Score;
+    public List<GameObject> Boots;
+    GamePlayUI uI;
+    MapGeneration Generation;
+    ShieldAbility shild;
     float LastObstaclesPositionZ = 0;
     float LastCoinPositionZ = 0;
+    float LastAbilityPositionZ = 0;
     public Animator Anim;
     public float SpeedForvard = 50;
+    public float JumpForse = 300;
     public float SpeedTurn = 50;
     int Xposition = 0;
     bool IsTerning = false;
@@ -30,15 +37,80 @@ public class Hero : MonoBehaviour
     {
         GenerateAndDeleteObstacles();
         GenerateAndDeleteCoins();
+        GenerateAndDeleteAbility();
         SwitchRightAndLeft();
         CheckJump();
         CheckRoll();
         Move();
     }
 
+    public void SetUp(MapGeneration mapGeneration, GamePlayUI gamePlayUI)
+    {
+        Generation = mapGeneration;
+        uI = gamePlayUI;
+    }
+
+    public void ActivateShildAbility(bool IsActive, ShieldAbility shieldAbility = null)
+    {
+        if (IsActive == true)
+        {
+            GetComponent<ShildHeroCollision>().enabled = true;
+            GetComponent<UsualHeroCollision>().enabled = false;
+            shild = shieldAbility;
+        }
+        else
+        {
+            GetComponent<ShildHeroCollision>().enabled = false;
+            GetComponent<UsualHeroCollision>().enabled = true;
+        }
+    }
+
+    public void ShildDisableForce()
+    {
+        shild.Stop();
+    }
+
+    public void ActivateJerkAbility(bool IsActive)
+    {
+        if (IsActive == true)
+        {
+            GetComponent<UsualHeroCollision>().enabled = false;
+            GetComponent<JerkHeroCollision>().enabled = true;
+            MoveDirection.z = SpeedForvard * 2;
+            Anim.speed = 2;
+        }
+        else
+        {
+            MoveDirection.z = SpeedForvard;
+            GetComponent<JerkHeroCollision>().enabled = false;
+            GetComponent<UsualHeroCollision>().enabled = true;
+            Anim.speed = 1;
+        }
+    }
+
+    public void ActivateShoesAbility(bool IsActive)
+    {
+        if (IsActive == true)
+        {
+            foreach (GameObject Boot in Boots)
+            {
+                Boot.SetActive(true);
+            }
+            JumpForse = 450;
+        }
+        else
+        {
+            foreach(GameObject Boot in Boots)
+            { 
+                Boot.SetActive(false); 
+            }
+            JumpForse = 300;
+        }
+    }
+
     public void StopRun() 
     {
-        
+        uI.ShowLosePanel(Score.GetScore());
         enabled = false;
     }
 
@@ -56,8 +128,17 @@ public class Hero : MonoBehaviour
     {
         if(transform.position.z - LastCoinPositionZ > 30)
         {
-            Generation.GenerateCoin(transform.position.z + 20);
+            Generation.GenerateCoin(transform.position.z + 25);
             LastCoinPositionZ = transform.position.z;
+        }
+    }
+
+    private void GenerateAndDeleteAbility()
+    {
+        if(transform.position.z - LastAbilityPositionZ > 60)
+        {
+            Generation.GenerateAbility(transform.position.z + 20);
+            LastAbilityPositionZ = transform.position.z;
         }
     }
 
@@ -103,7 +184,7 @@ public class Hero : MonoBehaviour
         }
         IsTerning = false;
         MoveDirection.x = 0;
-        // Принудительно поставить в линию
+        transform.position = new Vector3(FinishX, transform.position.y, transform.position.z);
         Body.constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezePositionX;
     }
     async void CheckJump()
@@ -112,7 +193,7 @@ public class Hero : MonoBehaviour
         {
             IsJumping = true;
             Anim.SetTrigger("Jump");
-            Body.AddForce(Vector3.up * 300);
+            Body.AddForce(Vector3.up * JumpForse);
             await UniTask.Delay(1500);
             IsJumping = false;
         }
