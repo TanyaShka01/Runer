@@ -1,19 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
-using Palmmedia.ReportGenerator.Core;
 using UnityEngine;
 
 public class HeroSpawner : MonoBehaviour
 {
     public AllHerosSettings Heros;
-    HeroParametres Hero1;
     void Start()
     {
-        Hero1 = Heros.AllHeros[0];
-        Debug.Log(Hero1.Name);
-        GameObject Hero = Instantiate(Hero1.MenuPrefab);
+        CheckFirstEnter();
+
+        string HeroName = PlayerProgres.GetSelectedHero();
+        HeroParametres SelectedHero = Heros.AllHeros[0];
+        for (int i = 0; i < Heros.AllHeros.Length; i++)
+        {
+            if (HeroName == Heros.AllHeros[i].Name)
+            {
+                SelectedHero = Heros.AllHeros[i];
+            }
+        }
+        GameObject Hero = Instantiate(SelectedHero.MenuPrefab);
         Hero.transform.position = new Vector3(0, -0.5f, 0);
         Hero.transform.eulerAngles = new Vector3(0, 160, 0);
+    }
+
+    private void CheckFirstEnter()
+    {
+        if (PlayerProgres.GetSelectedHero() == "")
+        {
+            PlayerProgres.BuyHero(Heros.AllHeros[0].Name);
+            PlayerProgres.SaveSelectedHero(Heros.AllHeros[0].Name);
+        }
     }
 
     void Update()
