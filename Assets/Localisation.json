@@ -1,0 +1,176 @@
+﻿{
+	"Langs":
+	[
+		{
+			"Lang": "RU",
+			"Translations": 
+			[
+				{
+					"TranslationKey": "PlayKey",
+					"Translation": "Играть"
+				},
+
+				{
+					"TranslationKey": "SettingsKey",
+					"Translation": "Настройки"
+				},
+
+				{
+					"TranslationKey": "ShopKey",
+					"Translation": "Магазин"
+				},
+
+				{
+					"TranslationKey": "SoundKey",
+					"Translation": "Звук"
+				},
+
+				{
+					"TranslationKey": "DifficultyKey",
+					"Translation": "Сложность"
+				},
+
+				{
+					"TranslationKey": "LangKey",
+					"Translation": "Язык"
+				},
+
+				{
+					"TranslationKey": "BackKey",
+					"Translation": "Назад"
+				},
+
+				{
+					"TranslationKey": "SelectKey",
+					"Translation": "Выбрать"
+				},
+
+				{
+					"TranslationKey": "SelectedKey",
+					"Translation": "Выбрано"
+				},
+
+				{
+					"TranslationKey": "ContinueKey",
+					"Translation": "Продолжить"
+				},
+
+				{
+					"TranslationKey": "MenuKey",
+					"Translation": "Меню"
+				},
+
+				{
+					"TranslationKey": "RestartKey",
+					"Translation": "Перезапустить"
+				},
+
+				{
+					"TranslationKey": "LoseKey",
+					"Translation": "Вы проиграли"
+				},
+
+				{
+					"TranslationKey": "YourScoreKey",
+					"Translation": "Ваш счёт"
+				},
+
+				{
+					"TranslationKey": "BestScoreKey",
+					"Translation": "Рекорд"
+				},
+
+				{
+					"TranslationKey": "NewScoreKey",
+					"Translation": "Новый рекорд!"
+				}
+			]
+		},
+
+		{
+			"Lang": "EN",
+			"Translations": 
+			[
+				{
+					"TranslationKey": "PlayKey",
+					"Translation": "Play"
+				},
+
+				{
+					"TranslationKey": "SettingsKey",
+					"Translation": "Settings"
+				},
+
+				{
+					"TranslationKey": "ShopKey",
+					"Translation": "Shop"
+				},
+
+				{
+					"TranslationKey": "SoundKey",
+					"Translation": "Sound"
+				},
+
+				{
+					"TranslationKey": "DifficultyKey",
+					"Translation": "Difficulty"
+				},
+
+				{
+					"TranslationKey": "LangKey",
+					"Translation": "Language"
+				},
+
+				{
+					"TranslationKey": "BackKey",
+					"Translation": "Back"
+				},
+
+				{
+					"TranslationKey": "SelectKey",
+					"Translation": "Select"
+				},
+
+				{
+					"TranslationKey": "SelectedKey",
+					"Translation": "Selected"
+				},
+
+				{
+					"TranslationKey": "ContinueKey",
+					"Translation": "Continue"
+				},
+
+				{
+					"TranslationKey": "MenuKey",
+					"Translation": "Menu"
+				},
+
+				{
+					"TranslationKey": "RestartKey",
+					"Translation": "Restart"
+				},
+
+				{
+					"TranslationKey": "LoseKey",
+					"Translation": "You Lose"
+				},
+
+				{
+					"TranslationKey": "YourScoreKey",
+					"Translation": "Youre score"
+				},
+
+				{
+					"TranslationKey": "BestScoreKey",
+					"Translation": "Best score"
+				},
+
+				{
+					"TranslationKey": "NewScoreKey",
+					"Translation": "New higt score!"
+				}
+			]
+		}
+	]
+}

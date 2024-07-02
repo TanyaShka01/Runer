@@ -17,6 +17,7 @@ public class ShopUI : MonoBehaviour
 
     public void BackMenu()
     {
+        SoundControler.Instance.PlaySound(SoundType.Click, true);
         SceneManager.LoadScene("Menu");
     }
 }

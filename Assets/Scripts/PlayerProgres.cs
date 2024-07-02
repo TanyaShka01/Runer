@@ -58,4 +58,14 @@ public static class PlayerProgres
     {
         PlayerPrefs.SetInt("Coin", GetCoinsCount() - CoinsMinus);
     }
+
+    public static void SetDifficulty(float Difficulty)
+    {
+        PlayerPrefs.SetFloat("Difficulty", Difficulty);
+    }
+
+    public static float GetDifficulty()
+    {
+        return PlayerPrefs.GetFloat("Difficulty", 0.5f);
+    }
 }

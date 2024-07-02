@@ -18,11 +18,11 @@ public class GamePlayUI : MonoBehaviour
         int Record = PlayerProgres.GetRecord();
         if (Score > Record)
         {
-            Result.text = $"New higt score!  {Record}";
+            Result.text = $"{LocalizationService.Instance.Translate("NewScoreKey")}  {Record}";
         }
         else
         {
-            Result.text = $"You Score: {Score}\n Your record: {Record}";
+            Result.text = $"{LocalizationService.Instance.Translate("BestScoreKey")}: {Score}\n {LocalizationService.Instance.Translate("YourScoreKey")}: {Record}";
         }
         LosePanel.SetActive(true);
     }

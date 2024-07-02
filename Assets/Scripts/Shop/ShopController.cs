@@ -25,11 +25,13 @@ public class ShopController : MonoBehaviour
     {
         HeroIndex += 1;
         UpdateHero();
+        SoundControler.Instance.PlaySound(SoundType.Click, true);
     }
     public void LeftClick()
     {
         HeroIndex -= 1;
         UpdateHero();
+        SoundControler.Instance.PlaySound(SoundType.Click, true);
     }
 
     void UpdateHero()
@@ -56,6 +58,7 @@ public class ShopController : MonoBehaviour
         string HeroName = Spawner.SpawnedHerosParametres[HeroIndex].Name;
         PlayerProgres.SaveSelectedHero(HeroName);
         UpdateButtons();
+        SoundControler.Instance.PlaySound(SoundType.Click, true);
     }
 
     void BuyTheHero()
@@ -63,6 +66,7 @@ public class ShopController : MonoBehaviour
         int Cost = Spawner.SpawnedHerosParametres[HeroIndex].Cost;
         if (Cost <= PlayerProgres.GetCoinsCount())
         {
+            SoundControler.Instance.PlaySound(SoundType.Buy, true);
             string HeroName = Spawner.SpawnedHerosParametres[HeroIndex].Name;
             PlayerProgres.BuyHero(HeroName);
             UpdateButtons();

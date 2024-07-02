@@ -28,6 +28,7 @@ public class Hero : MonoBehaviour
     Vector3 MoveDirection;
     void Start()
     {
+        SetSpeedByDifficulty();
         MoveDirection.z = SpeedForvard;
         Anim.SetBool("Run", true);
         Application.targetFrameRate = 30;
@@ -112,6 +113,11 @@ public class Hero : MonoBehaviour
     {
         uI.ShowLosePanel(Score.GetScore());
         enabled = false;
+    }
+
+    private void SetSpeedByDifficulty()
+    {
+        SpeedForvard = SpeedForvard + 50 * (PlayerProgres.GetDifficulty() - 0.5f);
     }
 
     private void GenerateAndDeleteObstacles()

@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Learn : MonoBehaviour
 {
-    public Rigidbody Body1;
-    public Rigidbody Body2;
+    
     void Start()
     {
-        Body1.mass = 48;
-        Body2.mass = 83;
+        Dictionary<string, int> Lights = new Dictionary<string, int>();
+        Lights.Add("Red", 50);
+        Lights.Add("Yellow", 3);
+        Lights.Add("Green", 20);
+        Debug.Log(Lights["Yellow1"]);
     }
 
     void Update()
